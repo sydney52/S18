@@ -2,7 +2,7 @@
 POO - Soirée 18 : Persistance - Réponses écrites
 =====================================================================
 
-Nom    :
+Nom    :Tchidjeu Saurelle
 Date   :
 
 Complétez les sections ci-dessous. Référez-vous à l'énoncé du TP pour
@@ -17,7 +17,12 @@ Pourquoi to_dict appelle-t-il super().to_dict() (enrichissement),
 alors que taille_estimee() de la S14 n'appelait pas super()
 (remplacement) ? Qu'est-ce qui distingue les deux situations ?
 
->>>
+>>>Dans to_dict(), on appelle super().to_dict() parce que la sous-classe
+ doit conserver toutes les informations du parent et simplement ajouter ses propres données.
+  C'est donc un enrichissement du comportement existant.
+
+En revanche, dans taille_estimee() de la S14, chaque sous-classe avait sa propre façon de calculer la taille.
+ La méthode du parent n'était pas utile, elle était entièrement remplacée. Il s'agit donc d'un remplacement et non d'un enrichissement.
 
 
 
@@ -26,19 +31,29 @@ Exercice 4 - Question AA3 (principe ouvert/fermé)
 ---------------------------------------------------------------------
 1. Énoncez le principe ouvert/fermé.
 
->>>
+>>>Le principe ouvert/fermé indique qu'un programme doit pouvoir être étendu
+ sans modifier son fonctionnement existant. 
 
 
 2. En quoi la cascade if/elif le violait-elle, et en quoi le registre
    le respecte-t-il ?
 
->>>
+>>>Avec une cascade if/elif, l'ajout de
+  LivreBraille oblige à modifier la fonction livre_depuis_dict(). Avec le registre _FABRIQUES, 
+  il suffit d'ajouter une nouvelle entrée dans le dictionnaire. La fonction reste inchangée, 
+  ce qui respecte le principe ouvert/fermé
 
 
 3. Que faudrait-il modifier, dans chaque version, pour ajouter demain
    un type LivreBraille ?
 
->>>
+>>>Version cascade : ajouter un nouveau elif dans livre_depuis_dict pour traiter LivreBraille.
+
+Version registre : ajouter seulement
+_FABRIQUES["LivreBraille"] = LivreBraille.
+
+Le registre respecte le principe ouvert/fermé car on étend le programme sans modifier la logique existante.
+
 
 
 

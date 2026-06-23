@@ -18,23 +18,16 @@ from livre_s18_squelette import Livre, LivreNumerique, LivreAudio
 
 
 # Registre discriminateur "type" -> classe. À COMPLÉTER (voir l'énoncé).
-
+_FABRIQUES = {"Livre": Livre,
+              "LivreNumerique":LivreNumerique,
+              "LivreAudio":LivreAudio}
 
 
 def livre_depuis_dict(donnees):
     type_livre=donnees.get("type")
-    
-    if type_livre == "Livre":
-        return Livre.from_dict(donnees)
-
-    elif type_livre == "LivreNumerique":
-        return LivreNumerique.from_dict(donnees)
-
-    elif type_livre == "LivreAudio":
-        return LivreAudio.from_dict(donnees)
-
-    else:
-        raise ValueError(f"Type de livre inconnu : {type_livre}")
+    if type_livre not in _FABRIQUES:
+        raise ValueError(f"type de livre inconnu: {type_livre!r}")
+    return _FABRIQUES[type_livre].from_dict(donnees)
    
 
 
